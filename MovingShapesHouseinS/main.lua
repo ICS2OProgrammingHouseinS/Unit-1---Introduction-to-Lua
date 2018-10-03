@@ -48,7 +48,7 @@ local function MovePlanet(event)
 	-- Adds the scroll speed to the x-value and y-value of the planet
 	planet.x = planet.x - scrollSpeedPlanet
 	planet.y = planet.y + scrollSpeedPlanet
-	-- Changes the x-scale and the of the planet
+	-- Changes the x-scale the of the planet
 	planet.xScale = planet.xScale - 0.01
 	-- Change the transparency of the ship every time it moves
 	planet.alpha = planet.alpha - 0.0001
