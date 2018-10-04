@@ -2,7 +2,7 @@
 -- Title: TouchAndDrag
 -- Name: Housein Shaib
 -- Course: ICS2O
--- This program displays 2 images that can be clicke and draged
+-- This program displays 3 images that can be clicke and dragged
 -----------------------------------------------------------------------------------------
 
 -- Hides the status bar
