@@ -74,7 +74,7 @@ local function PlanetListener(touch)
 	if (touch.phase == "began") then
 		if (alreadyTouchedRocketship == false) then
 			if (alreadyTouchedStar == false) then
-				alreadyTouchedRocketship = true
+				alreadyTouchedPlanet = true
 			end
 			alreadyTouchedPlanet = true
 		end
@@ -103,11 +103,11 @@ local function StarListener(touch)
 			if (alreadyTouchedPlanet == false) then
 				alreadyTouchedStar = true
 			end
-			alreadyTouchedPlanet = true
+			alreadyTouchedStar = true
 		end
 	end
 
-	if ( (touch.phase == "moved") and (alreadyTouchedPlanet == true) ) then
+	if ( (touch.phase == "moved") and (alreadyTouchedStar == true) ) then
 		star.x = touch.x
 		star.y = touch.y
 	end
