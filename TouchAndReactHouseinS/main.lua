@@ -53,7 +53,22 @@ end
 -- Function: BlueButtonListener
 -- Input: touch listener
 -- Output: none
--- Description: When
+-- Description: When red button is clicked, it will make the blue button disappear, the text appear
+-- with the text
+local function RedButtonListener(touch)
+	if (touch.phase == "began") then
+		blueButton.isVisible = false
+		redButton.isVisible = true
+		textObject.isVisible = true
+	end
+
+	if (touch.phase == "ended") then
+		blueButton.isVisible = true
+		redButton.isVisible = false
+		textObject.isVisible = false
+	end
+end
 
 -- Add the respective listeners to each object
 blueButton:addEventListener("touch", BlueButtonListener)
+redButton:addEventListener("touch", RedButtonListener)
