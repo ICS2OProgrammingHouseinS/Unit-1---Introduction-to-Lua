@@ -31,7 +31,10 @@ textObject:setTextColor(0, 1, 1)
 textObject.isVisible = false
 
 -- Creates pingu image, sets it's position and make it invisable
-local pingu = display.newImageRect("Images/Pingu.png", 106, 106)
+local pingu = display.newImageRect("Images/Pingu.png", 396, 396)
+pingu.x = 500
+pingu.y = 600
+pingu.isVisible = false
 
 -- Function: BlueButtonListener
 -- Input: touch listener
@@ -43,32 +46,36 @@ local function BlueButtonListener(touch)
 		blueButton.isVisible = false
 		redButton.isVisible = true
 		textObject.isVisible = true
+		pingu.isVisible = true
 	end
 
 	if (touch.phase == "ended") then
 		blueButton.isVisible = true
 		redButton.isVisible = false
 		textObject.isVisible = false
+		pingu.isVisible = false
 	end
 
 end
 
--- Function: BlueButtonListener
+-- Function: RedButtonListener
 -- Input: touch listener
 -- Output: none
--- Description: When red button is clicked, it will make the blue button disappear, the text appear
+-- Description: When red button is clicked, it will make the blue button disappear, the red button appear
 -- with the text
 local function RedButtonListener(touch)
 	if (touch.phase == "began") then
 		blueButton.isVisible = false
 		redButton.isVisible = true
 		textObject.isVisible = true
+		pingu.isVisible = true
 	end
 
 	if (touch.phase == "ended") then
 		blueButton.isVisible = true
 		redButton.isVisible = false
 		textObject.isVisible = false
+		pingu.isVisible = false
 	end
 end
 
