@@ -30,6 +30,9 @@ textObject.y = display.contentHeight/3
 textObject:setTextColor(0, 1, 1)
 textObject.isVisible = false
 
+-- Creates pingu image, sets it's position and make it invisable
+local pingu = display.newImageRect("Images/Pingu.png", 106, 106)
+
 -- Function: BlueButtonListener
 -- Input: touch listener
 -- Output: none
