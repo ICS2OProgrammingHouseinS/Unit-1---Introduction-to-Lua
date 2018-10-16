@@ -19,6 +19,7 @@ display.setDefault("background", 0/255, 220/255, 200/255)
 -- Create local varibles
 local questionObject
 local correctObject
+local incorrectObject
 local numericField
 local randomNumber1
 local randomNumber2
@@ -41,7 +42,12 @@ local function AskQuestion()
 end
 
 local function HideCorrect()
-	correctObject.isVisable = false
+	correctObject.isVisible = false
+	AskQuestion()
+end
+
+local function HideIncorrect()
+	incorrectObject.isVisible = false
 	AskQuestion()
 end
 
@@ -58,10 +64,13 @@ local function NumericFieldListener(event)
 			-- When answer is submitted (enter key is presed) set user input to user's answer
 			userAnswer = tonumber(event.target.text)
 
-			-- If the user's answer and the correct answer are the same:
+			-- If the user's answer and the correct answer are the same or different:
 			if (userAnswer == correctAnswer) then
-				correctObject.isVisable = true
+				correctObject.isVisible = true
 				timer.performWithDelay(2000, HideCorrect)
+			else
+				incorrectObject.isVisible = true
+				timer.performWithDelay(2000, HideIncorrect)
 			end
 	end
 end
@@ -76,8 +85,24 @@ questionObject:setTextColor(155/255, 42/255, 198/255)
 
 -- Create the correct text object and make it invisible
 correctObject = display.newText("Correct!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
-correctObject:setTextColor(15/255, 100/255, 0/255)
+correctObject:setTextColor(0/255, 0/255, 0/255)
 correctObject.isVisible = false
 
+-- Create the incorrect text object and make it invisible
+incorrectObject = display.newText("Incorrect", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
+incorrectObject:setTextColor(0/255, 0/255, 0/255)
+incorrectObject.isVisible = false
+
 -- Create numeric field
-numericField = native.newTextField(display.contentWidth/2)
+numericField = native.newTextField(display.contentWidth/2, display.contentHeight/2, 150, 80)
+numericField.inputType = "number"
+
+-- Add the event listener for numeric fiel
+numericField:addEventListener("userInput", NumericFieldListener)
+
+-----------------------------------------------------------------------------------------
+-- FUNCTION CALLS
+-----------------------------------------------------------------------------------------
+
+-- Call the function to ask the question
+AskQuestion()
