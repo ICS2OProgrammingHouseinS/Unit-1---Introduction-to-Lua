@@ -25,6 +25,7 @@ local randomNumber1
 local randomNumber2
 local userAnswer
 local correctAnswer
+local randomOperator
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -32,13 +33,21 @@ local correctAnswer
 
 local function AskQuestion()
 	-- Generate 2 random numbers between a max and a min number
-	randomNumber1 = math.random(0, 10)
-	randomNumber2 = math.random(0, 10)
+	randomNumber1 = math.random(10, 20)
+	randomNumber2 = math.random(10, 20)
+	randomOperator = math.random(1, 3)
 
+	-- Create question in text object and sets the value of correctAnswer
+	if (randomOperator == 1) then
 	correctAnswer = randomNumber1 + randomNumber2
-
-	-- Create question in text object
 	questionObject.text = randomNumber1 .. "+" .. randomNumber2 .. "="
+	elseif (randomOperator == 2) then
+	correctAnswer = randomNumber1 - randomNumber2
+	questionObject.text = randomNumber1 .. "-" .. randomNumber2 .. "="
+	else
+	correctAnswer = randomNumber1 * randomNumber2
+	questionObject.text = randomNumber1 .. "x" .. randomNumber2 .. "="
+end
 end
 
 local function HideCorrect()
@@ -50,7 +59,6 @@ local function HideIncorrect()
 	incorrectObject.isVisible = false
 	AskQuestion()
 end
-
 local function NumericFieldListener(event)
 
 	-- User begins editing "numericField"
@@ -81,6 +89,7 @@ end
 
 -- Displays a question and sets the colour
 questionObject = display.newText("", display.contentWidth/3, display.contentHeight/2, nil, 50)
+questionObject.x = display.contentWidth/2
 questionObject:setTextColor(155/255, 42/255, 198/255)
 
 -- Create the correct text object and make it invisible
@@ -90,11 +99,14 @@ correctObject.isVisible = false
 
 -- Create the incorrect text object and make it invisible
 incorrectObject = display.newText("Incorrect", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
-incorrectObject:setTextColor(0/255, 0/255, 0/255)
+incorrectObject:setTextColor(150/255, 0/255, 255/255)
 incorrectObject.isVisible = false
 
 -- Create numeric field
 numericField = native.newTextField(display.contentWidth/2, display.contentHeight/2, 150, 80)
+numericField.xScale = 1.5
+numericField.x = display.contentWidth/2
+numericField.y = 500
 numericField.inputType = "number"
 
 -- Add the event listener for numeric fiel
