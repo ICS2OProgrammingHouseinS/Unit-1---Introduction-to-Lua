@@ -26,11 +26,8 @@ local randomNumber2
 local userAnswer
 local correctAnswer
 local randomOperator
-local correct = 0
-local incorrect = 0
+local numberPoints = 0
 local correctCounter
-local incorrectCounter
-
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -85,12 +82,16 @@ local function NumericFieldListener(event)
 
 			-- If the user's answer and the correct answer are the same or different:
 			if (userAnswer == correctAnswer) then
+				numberPoints = numberPoints + 1
 				correctObject.isVisible = true
 				timer.performWithDelay(2500, HideCorrect)
+				-- Creates number of correct answers
+				correctCounter.text = ("Correct: " .. numberPoints)
 			else
 				incorrectObject.isVisible = true
 				timer.performWithDelay(1500, HideIncorrect)
 			end
+		numericField.text = ""	
 	end
 end
 
@@ -109,7 +110,7 @@ correctObject:setTextColor(0/255, 0/255, 0/255)
 correctObject.isVisible = false
 
 -- Create the incorrect text object and make it invisible
-incorrectObject = ("Incorrect", display.contentWidth/2, display.contentHeight/3, nil, 50)
+incorrectObject = display.newText("Incorrect", display.contentWidth/2, display.contentHeight/3, nil, 55)
 incorrectObject:setTextColor(150/255, 0/255, 255/255)
 incorrectObject.isVisible = false
 
@@ -119,6 +120,11 @@ numericField.xScale = 2.5
 numericField.x = display.contentWidth/2
 numericField.y = 500
 numericField.inputType = "number"
+
+-- Create score counter
+correctCounter = display.newText("", 200, 100, nil, 75)
+correctCounter:setTextColor(10/255, 30/255, 50/255)
+correctCounter.text = ("Correct: " .. numberPoints)
 
 -- Add the event listener for numeric fiel
 numericField:addEventListener("userInput", NumericFieldListener)
