@@ -30,6 +30,14 @@ local numberPoints = 0
 local correctCounter
 
 -----------------------------------------------------------------------------------------
+-- SOUNDS
+-----------------------------------------------------------------------------------------
+
+-- Correct sound
+local correctSound = audio.loadSound("Sounds/trains2.mp3")
+local correctSoundChannel
+
+-----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
@@ -82,6 +90,7 @@ local function NumericFieldListener(event)
 
 			-- If the user's answer and the correct answer are the same or different:
 			if (userAnswer == correctAnswer) then
+				correctSoundChannel = audio.play(correctSound)
 				numberPoints = numberPoints + 1
 				correctObject.isVisible = true
 				timer.performWithDelay(2500, HideCorrect)
