@@ -128,7 +128,7 @@ numericField = native.newTextField(display.contentWidth/2, display.contentHeight
 numericField.xScale = 2.5
 numericField.x = display.contentWidth/2
 numericField.y = 500
-numericField.inputType = "number"
+numericField.inputType = "default"
 
 -- Create score counter
 correctCounter = display.newText("", 200, 100, nil, 75)
