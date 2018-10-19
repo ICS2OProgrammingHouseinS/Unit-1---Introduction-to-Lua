@@ -36,6 +36,8 @@ local correctCounter
 -- Correct sound
 local correctSound = audio.loadSound("Sounds/trains2.mp3")
 local correctSoundChannel
+local incorrectSound = audio.loadSound("Sounds/water1.mp3")
+local incorrectSoundChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -97,8 +99,9 @@ local function NumericFieldListener(event)
 				-- Creates number of correct answers
 				correctCounter.text = ("Correct: " .. numberPoints)
 			else
+				incorrectSoundChannel = audio.play(incorrectSound)
 				incorrectObject.isVisible = true
-				timer.performWithDelay(1500, HideIncorrect)
+				timer.performWithDelay(2500, HideIncorrect)
 			end
 		numericField.text = ""	
 	end
