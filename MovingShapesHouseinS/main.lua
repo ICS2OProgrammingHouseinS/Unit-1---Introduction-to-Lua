@@ -8,6 +8,18 @@
 -- Hides the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
+-----------------------------------------------------------------------------------------
+-- SOUNDS
+-----------------------------------------------------------------------------------------
+local backgroundMusic = audio.loadSound("Sounds/bensound-buddy.mp3")
+local backgroundMusicChannel
+local timer2 = timer.performWithDelay(161999)
+local timer = timer.performWithDelay(1)
+
+local function BackgroundMusic()
+	backgroundMusicChannel = audio.play(timer , backgroundMusic, timer2)
+end
+
 -- Global variables
 scrollSpeedBeetle = 3
 scrollSpeedPlanet = 4
@@ -57,3 +69,4 @@ end
 -- MoveShip will be called over and over again
 Runtime:addEventListener("enterFrame", MoveBeetleship)
 Runtime:addEventListener("enterFrame", MovePlanet)
+Runtime:addEventListener("enterFrame", BackgroundMusic)

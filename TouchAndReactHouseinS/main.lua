@@ -36,6 +36,12 @@ pingu.x = 500
 pingu.y = 600
 pingu.isVisible = false
 
+-----------------------------------------------------------------------------------------
+-- SOUNDS
+-----------------------------------------------------------------------------------------
+local buttonSound = audio.loadSound("Sounds/SpringSoundEffect.mp3")
+local buttonSoundChannel
+
 -- Function: BlueButtonListener
 -- Input: touch listener
 -- Output: none
@@ -47,6 +53,7 @@ local function BlueButtonListener(touch)
 		redButton.isVisible = true
 		textObject.isVisible = true
 		pingu.isVisible = true
+		buttonSoundChannel = audio.play(buttonSound)
 	end
 
 	if (touch.phase == "ended") then
