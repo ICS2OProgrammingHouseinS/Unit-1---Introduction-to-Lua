@@ -24,6 +24,12 @@ end
 scrollSpeedBeetle = 3
 scrollSpeedPlanet = 4
 
+-----------------------------------------------------------------------------------------
+-- SOUNDS
+-----------------------------------------------------------------------------------------
+local backgroundMusic = audio.loadSound("Sounds/bensound-buddy.mp3")
+local backgroundMusicChannel = audio.play(backgroundMusic)
+
 -- Backgrond images with width and height
 local backgroundImage = display.newImageRect("background.png", 2048, 1536)
 

@@ -5,6 +5,12 @@
 -- the command terminal
 -----------------------------------------------------------------------------------------
 
+-----------------------------------------------------------------------------------------
+-- SOUNDS
+-----------------------------------------------------------------------------------------
+local backgroundMusic = audio.loadSound("Sounds/bensound-epic.mp3")
+local backgroundMusicChannel = audio.play(backgroundMusic)
+
 -- Print "How are you?" to the command terminal
 print ("How are you?")
 
