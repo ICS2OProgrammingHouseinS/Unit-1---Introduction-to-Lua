@@ -28,6 +28,7 @@ local correctAnswer
 local randomOperator
 local numberPoints = 0
 local correctCounter
+local gameOver
 
 -- Varibles for the timer
 local totalSeconds = 16
@@ -90,6 +91,22 @@ local function HideIncorrect()
 	AskQuestion()
 end
 
+local function UpdateHearts()
+		if (lives == 0) then
+		heart1.isVisible = false
+		clockText.isVisible = false
+		timer.cancel(countDownTimer)
+		gameOver.isVisible = true
+		numericField.isVisible = false
+	elseif (lives == 1) then
+		heart2.isVisible = false
+	elseif (lives == 2) then
+		heart3.isVisible = false
+	elseif (lives == 3) then
+		heart4.isVisible = false
+	end
+end
+
 local function UpdateTime()
 
 	-- Decrement the number of seconds
@@ -103,18 +120,10 @@ local function UpdateTime()
 		lives = lives - 1
 		incorrectSoundChannel = audio.play(incorrectSound)
 		AskQuestion()
-		if (lives == 0) then
-			heart1.isVisible = false
-			clockText.isVisible = false
-		elseif (lives == 1) then
-			heart2.isVisible = false
-		elseif (lives == 2) then
-			heart3.isVisible = false
-		elseif (lives == 3) then
-			heart4.isVisible = false
-		end
+		UpdateHearts()
 	end
 end
+
 
 local function NumericFieldListener(event)
 
@@ -141,6 +150,7 @@ local function NumericFieldListener(event)
 			else
 				incorrectSoundChannel = audio.play(incorrectSound)
 				lives = lives - 1
+				UpdateHearts()
 				incorrectObject.isVisible = true
 				secondsLeft = totalSeconds
 				timer.performWithDelay(2500, HideIncorrect)
@@ -148,7 +158,6 @@ local function NumericFieldListener(event)
 		numericField.text = ""	
 	end
 end
-
 
 
 -- Function that calls the timer
@@ -209,6 +218,12 @@ clockText = display.newText("", 90, 200, nil, 50)
 clockText:setTextColor(255/255, 255/255, 255/255)
 clockText.xScale = 2
 clockText.yScale = 2
+
+gameOver = display.newImageRect("Images/gameOver.png", 1350, 900)
+gameOver.x = 515
+gameOver.y = 400
+gameOver.isVisible = false
+
 
 -- Add the event listener for numeric fiel
 numericField:addEventListener("userInput", NumericFieldListener)
