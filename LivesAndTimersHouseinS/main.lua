@@ -10,14 +10,16 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 -- Varibles for the timer
-local totalSeconds = 6
-local secondsLeft = 6
+local totalSeconds = 16
+local secondsLeft = 16
 local clockText
 local countDownTimer
 
-local lives = 1
+local lives = 4
 local heart1
 local heart2
+local heart3
+local heart4
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -36,11 +38,15 @@ local function UpdateTime()
 		secondsLeft = totalSeconds
 		lives = lives - 1
 
-		if (lives == 2) then
-			heart2.isVisible = false
-		elseif (lives == 1) then
+		if (lives == 0) then
 			heart1.isVisible = false
-			
+			clockText.isVisible = false
+		elseif (lives == 1) then
+			heart2.isVisible = false
+		elseif (lives == 2) then
+			heart3.isVisible = false
+		elseif (lives == 3) then
+			heart4.isVisible = false
 		end
 	end
 end
@@ -56,13 +62,21 @@ end
 -----------------------------------------------------------------------------------------
 
 -- Create the lives to display on the screen
+heart1 = display.newImageRect("Images/heart.png", 100, 100)
+heart1.x = display.contentWidth * 7 / 8
+heart1.y = display.contentHeight * 1 / 7
+
 heart2 = display.newImageRect("Images/heart.png", 100, 100)
-heart2.x = display.contentWidth * 7 / 8
+heart2.x = display.contentWidth * 6 / 8
 heart2.y = display.contentHeight * 1 / 7
 
-heart1 = display.newImageRect("Images/heart.png", 100, 100)
-heart1.x = display.contentWidth * 6 / 8
-heart1.y = display.contentHeight * 1 / 7
+heart3 = display.newImageRect("Images/heart.png", 100, 100)
+heart3.x = display.contentWidth * 5 / 8
+heart3.y = display.contentHeight * 1 / 7
+
+heart4 = display.newImageRect("Images/heart.png", 100, 100)
+heart4.x = display.contentWidth * 4 / 8
+heart4.y = display.contentHeight * 1 / 7
 
 clockText = display.newText("", 100, 100, nil, 50)
 clockText:setTextColor(255/255, 255/255, 255/255)
