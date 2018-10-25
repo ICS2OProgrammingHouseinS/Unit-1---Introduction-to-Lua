@@ -45,6 +45,22 @@ beam:toBack()
 -- Add to physics
 physics.addBody(beam, "static", {friction=0.5, bounce=0.3})
 -----------------------------------------------------------------------------------------
+-- Beam2
+local beam2 = display.newImage("Images/beam_long.png", 0, 0)
+-- Set the x/y value of beam
+beam2.x = display.contentCenterX
+beam2.y = display.contentCenterY*1.65
+-- Set the width/height
+beam2.width = display.contentWidth/2
+beam2.height = display.contentHeight/10
+-- Rotates the beam 45 degrees
+beam2:rotate(-45)
+-- Sends the beam to back layer
+beam2:toBack()
+
+-- Add to physics
+physics.addBody(beam2, "static", {friction=0.5, bounce=0.3})
+-----------------------------------------------------------------------------------------
 -- Create bkg
 local bkg = display.newImage("Images/bkg.png", 0, 0)
 
