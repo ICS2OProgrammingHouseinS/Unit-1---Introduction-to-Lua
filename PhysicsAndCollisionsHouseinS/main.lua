@@ -48,7 +48,7 @@ physics.addBody(beam, "static", {friction=0.5, bounce=0.3})
 -- Beam2
 local beam2 = display.newImage("Images/beam_long.png", 0, 0)
 -- Set the x/y value of beam
-beam2.x = display.contentCenterX
+beam2.x = display.contentWidth-150
 beam2.y = display.contentCenterY*1.65
 -- Set the width/height
 beam2.width = display.contentWidth/2
