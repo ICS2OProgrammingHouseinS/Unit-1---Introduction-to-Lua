@@ -27,7 +27,7 @@ mole.isVisible = false
 
 -- Creates score varibles
 local score = 0
-local scoreCounter = ("Correct: " .. score)
+local scoreCounter = ("Points: " .. score)
 scoreCounter = display.newText("", 200, 100, nil, 75)
 scoreCounter:setTextColor(10/255, 30/255, 50/255)
 
@@ -35,10 +35,12 @@ scoreCounter:setTextColor(10/255, 30/255, 50/255)
 -- FUNCTIONS
 -----------------------------------------------------------------------------------------
 
+
 -- This function makes the mole appear in a random(x,y) position
--- on the screen before calling the function
+-- on the screen before calling the function.
 local function PopUp()
-	-- Choosing random position on the screen
+
+	-- Choosing random position on the screen between 0 and the size of the screen.
 	mole.x = math.random(0, display.contentWidth)
 	mole.y = math.random(0, display.contentHeight)
 
@@ -53,3 +55,43 @@ end
 local function PopUpDelay()
 	timer.performWithDelay(3000, PopUp)
 end
+
+-- This function makes the mole invivible and then calls the PopUpDelay function
+local function Hide()
+
+	-- Changing visibility
+	mole.isVisible = false
+
+	-- Call the PopUpDelay function
+	PopUpDelay()
+end
+
+
+-- This function starts the game
+local function GameStart()
+	PopUpDelay()
+end
+
+-- This function increments the score only if the mole is clicked. It then displays the
+-- new score.
+local function Whacked(event)
+
+	-- If touched phase just started
+	if (event.phase == "began") then
+		score = score + 1
+		-- Displays score on screen
+		scoreCounter.text = ("Points: " .. score)
+		-- Calls PopUp
+		Hide()
+	end
+end
+
+-----------------------------------------------------------------------------------------
+-- EVENT LISTENERS
+-----------------------------------------------------------------------------------------
+mole:addEventListener("touch", Whacked)
+
+-----------------------------------------------------------------------------------------
+-- GAME START
+-----------------------------------------------------------------------------------------
+GameStart()
