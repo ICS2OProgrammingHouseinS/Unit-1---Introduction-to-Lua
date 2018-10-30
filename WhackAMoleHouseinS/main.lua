@@ -35,7 +35,6 @@ scoreCounter:setTextColor(10/255, 30/255, 50/255)
 -- FUNCTIONS
 -----------------------------------------------------------------------------------------
 
-
 -- This function makes the mole appear in a random(x,y) position
 -- on the screen before calling the function.
 local function PopUp()
@@ -65,7 +64,6 @@ local function Hide()
 	-- Call the PopUpDelay function
 	PopUpDelay()
 end
-
 
 -- This function starts the game
 local function GameStart()
