@@ -47,22 +47,12 @@ local function PopUp()
 	mole.isVisible = true
 
 	-- Calls hide function
-	timer.performWithDelay(500, Hide)
+	timer.performWithDelay(500, PopUp)
 end
 
 -- This function calls the PopUp function after 3 seconds
 local function PopUpDelay()
 	timer.performWithDelay(3000, PopUp)
-end
-
--- This function makes the mole invivible and then calls the PopUpDelay function
-local function Hide()
-
-	-- Changing visibility
-	mole.isVisible = false
-
-	-- Call the PopUpDelay function
-	PopUpDelay()
 end
 
 -- This function starts the game
@@ -80,7 +70,7 @@ local function Whacked(event)
 		-- Displays score on screen
 		scoreCounter.text = ("Points: " .. score)
 		-- Calls PopUp
-		Hide()
+		PopUp()
 	end
 end
 
