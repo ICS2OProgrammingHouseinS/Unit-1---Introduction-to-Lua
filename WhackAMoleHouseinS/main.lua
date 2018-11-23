@@ -37,7 +37,7 @@ scoreCounter:setTextColor(10/255, 30/255, 50/255)
 
 -- This function makes the mole appear in a random(x,y) position
 -- on the screen before calling the function.
-local function PopUp()
+function PopUp()
 
 	-- Choosing random position on the screen between 0 and the size of the screen.
 	mole.x = math.random(0, display.contentWidth)
@@ -47,22 +47,22 @@ local function PopUp()
 	mole.isVisible = true
 
 	-- Calls hide function
-	timer.performWithDelay(500, PopUp)
+	timer.performWithDelay(1000, PopUp)
 end
 
 -- This function calls the PopUp function after 3 seconds
-local function PopUpDelay()
+ function PopUpDelay()
 	timer.performWithDelay(3000, PopUp)
 end
 
 -- This function starts the game
-local function GameStart()
+ function GameStart()
 	PopUpDelay()
 end
 
 -- This function increments the score only if the mole is clicked. It then displays the
 -- new score.
-local function Whacked(event)
+ function Whacked(event)
 
 	-- If touched phase just started
 	if (event.phase == "began") then
