@@ -47,6 +47,13 @@ function PopUp()
 	mole.isVisible = true
 
 	-- Calls hide function
+	timer.performWithDelay(1000, Hide)
+end
+
+function Hide()
+	-- Hide the mole
+	mole.isVisible = false
+	-- Calls hide function
 	timer.performWithDelay(1000, PopUp)
 end
 
