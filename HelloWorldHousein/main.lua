@@ -9,8 +9,13 @@
 -- SOUNDS
 -----------------------------------------------------------------------------------------
 local backgroundMusic = audio.loadSound("Sounds/bensound-epic.mp3")
-local backgroundMusicChannel = audio.play(backgroundMusic)
+local backgroundMusicChannel
 
+	function BackgroundMusic()
+		backgroundMusicChannel = audio.play(backgroundMusic)
+		timer.peformWithDelay(BackgroundMusic, 177000)
+	end
+	
 -- Print "How are you?" to the command terminal
 print ("How are you?")
 
